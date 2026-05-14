@@ -16,20 +16,20 @@ Lab này kế thừa ý tưởng từ Lab 3 DES Socket, nhưng nâng cấp theo 
 
 ## Team members
 
-- **Thành viên 1**: TODO_MEMBER_1 - MSSV: TODO_MEMBER_1_ID
-- **Thành viên 2**: TODO_MEMBER_2 - MSSV: TODO_MEMBER_2_ID
+- **Thành viên 1**: Bùi Đình Mạnh - MSSV: 1871020379
+- **Thành viên 2**:  - MSSV: 
 
 ## Task division
 
-- **Thành viên 1 phụ trách chính**: TODO_ROLE_MEMBER_1
-- **Thành viên 2 phụ trách chính**: TODO_ROLE_MEMBER_2
-- **Phần làm chung**: TODO_SHARED_WORK
+- **Thành viên 1 phụ trách chính**: sender.py, AES encryption, key channel, sender log và kiểm tra packet gửi
+- **Thành viên 2 phụ trách chính**: 
+- **Phần làm chung**: README.md, report-1page.md, threat-model-1page.md, peer-review-response.md, pytest, demo và kiểm tra hệ thống
 
 ## Demo roles
 
-- **Demo Sender / kênh khóa / log gửi**: TODO_DEMO_ROLE_1
-- **Demo Receiver / kênh dữ liệu / giải mã**: TODO_DEMO_ROLE_2
-- **Cả hai cùng trả lời threat model và ethics**: TODO_DEMO_ROLE_SHARED
+- **Demo Sender / kênh khóa / log gửi**: Thành viên 1
+- **Demo Receiver / kênh dữ liệu / giải mã**: 
+- **Cả hai cùng trả lời threat model và ethics**: Thành viên 1 và Thành viên 2
 
 ---
 
@@ -199,8 +199,7 @@ CI sẽ kiểm tra:
 - Có test wrong key.
 - Có test tamper.
 - Có test local sender-receiver.
-- README có thông tin nhóm 2 người.
-- Các file báo cáo không còn `TODO_STUDENT`.
+- README có thông tin nhóm 2 người..
 - Có ít nhất 1 file log thật trong `logs/`.
 
 ---
