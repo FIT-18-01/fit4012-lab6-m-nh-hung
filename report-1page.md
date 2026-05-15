@@ -3,7 +3,7 @@
 ## Thông tin nhóm
 
 - Thành viên 1: Bùi Đình Mạnh
-- Thành viên 2: 
+- Thành viên 2: Phạm Ngọc Hùng
 
 ## Mục tiêu
 

@@ -1,5 +1,14 @@
 import os
 import socket
+import sys
+
+os.environ["PYTHONUTF8"] = "1"
+
+# Ensure stdout/stderr use UTF-8 encoding
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+if sys.stderr.encoding != 'utf-8':
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 from pathlib import Path
 
 from aes_socket_utils import (
@@ -10,7 +19,7 @@ from aes_socket_utils import (
     recv_exact,
 )
 
-HOST = os.getenv("RECEIVER_HOST", "0.0.0.0")
+HOST = os.getenv("RECEIVER_HOST", "0.0.0.0").strip()
 DATA_PORT = int(os.getenv("DATA_PORT", "6000"))
 KEY_PORT = int(os.getenv("KEY_PORT", "6001"))
 TIMEOUT = float(os.getenv("SOCKET_TIMEOUT", "10"))
@@ -55,19 +64,19 @@ def receive_data_packet() -> bytes:
 def main() -> None:
     lines = []
 
-    line = f"[*] Receiver đang lắng nghe kênh khóa tại {HOST}:{KEY_PORT}"
-    print(line)
+    line = f"[*] Receiver dang lang nghe kênh khóa tai {HOST}:{KEY_PORT}"
+    print(line, flush=True)
     lines.append(line)
 
     key_packet = receive_key_packet()
     key, iv = parse_key_packet(key_packet)
 
-    line = "[+] Đã nhận AES key và IV."
-    print(line)
+    line = "[+] Da nhan AES key va IV."
+    print(line, flush=True)
     lines.append(line)
 
-    line = f"[*] Receiver đang lắng nghe kênh dữ liệu tại {HOST}:{DATA_PORT}"
-    print(line)
+    line = f"[*] Receiver dang lang nghe kênh dữ liệu tai {HOST}:{DATA_PORT}"
+    print(line, flush=True)
     lines.append(line)
 
     data_packet = receive_data_packet()
@@ -75,10 +84,10 @@ def main() -> None:
     ciphertext = data_packet[LENGTH_HEADER_SIZE:]
 
     if len(ciphertext) != length:
-        raise ValueError("Ciphertext nhận được không khớp length header.")
+        raise ValueError("Ciphertext nhan duoc khong khop length header.")
 
-    line = "[+] Đã nhận ciphertext."
-    print(line)
+    line = "[+] Da nhan ciphertext."
+    print(line, flush=True)
     lines.append(line)
 
     plaintext = decrypt_aes_cbc(key, iv, ciphertext)
@@ -89,8 +98,8 @@ def main() -> None:
         f"[+] Bản tin gốc: {message}",
     ])
 
-    print("[+] Đã giải mã thành công.")
-    print(f"[+] Bản tin gốc: {message}")
+    print("[+] Đã giải mã thành công.", flush=True)
+    print(f"[+] Bản tin gốc: {message}", flush=True)
 
     if OUTPUT_FILE:
         Path(OUTPUT_FILE).write_bytes(plaintext)

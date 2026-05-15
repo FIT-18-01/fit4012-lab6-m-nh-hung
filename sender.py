@@ -1,10 +1,20 @@
 import os
 import socket
+import sys
+
+os.environ["PYTHONUTF8"] = "1"
+
+# Ensure stdout/stderr use UTF-8 encoding
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+if sys.stderr.encoding != 'utf-8':
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
 from pathlib import Path
 
 from aes_socket_utils import build_data_packet, build_key_packet, encrypt_aes_cbc
 
-SERVER_IP = os.getenv("SERVER_IP", "127.0.0.1")
+SERVER_IP = os.getenv("SERVER_IP", "127.0.0.1").strip()
 DATA_PORT = int(os.getenv("DATA_PORT", "6000"))
 KEY_PORT = int(os.getenv("KEY_PORT", "6001"))
 AES_KEY_SIZE = int(os.getenv("AES_KEY_SIZE", "16"))

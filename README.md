@@ -17,18 +17,18 @@ Lab này kế thừa ý tưởng từ Lab 3 DES Socket, nhưng nâng cấp theo 
 ## Team members
 
 - **Thành viên 1**: Bùi Đình Mạnh - MSSV: 1871020379
-- **Thành viên 2**:  - MSSV: 
+- **Thành viên 2**: Phạm Ngọc Hùng - MSSV: 1871020265
 
 ## Task division
 
 - **Thành viên 1 phụ trách chính**: sender.py, AES encryption, key channel, sender log và kiểm tra packet gửi
-- **Thành viên 2 phụ trách chính**: 
+- **Thành viên 2 phụ trách chính**: receiver.py, AES decryption, data channel, receiver log và xử lý nhận dữ liệu
 - **Phần làm chung**: README.md, report-1page.md, threat-model-1page.md, peer-review-response.md, pytest, demo và kiểm tra hệ thống
 
 ## Demo roles
 
 - **Demo Sender / kênh khóa / log gửi**: Thành viên 1
-- **Demo Receiver / kênh dữ liệu / giải mã**: 
+- **Demo Receiver / kênh dữ liệu / giải mã**: Thành viên 2
 - **Cả hai cùng trả lời threat model và ethics**: Thành viên 1 và Thành viên 2
 
 ---
