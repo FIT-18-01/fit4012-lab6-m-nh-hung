@@ -43,7 +43,7 @@ def send_packet(host: str, port: int, packet: bytes) -> None:
             try:
                 sock.connect((host, port))
                 break
-            except ConnectionRefusedError:
+            except (ConnectionRefusedError, ConnectionAbortedError, OSError):
                 time.sleep(0.2)
         else:
             raise ConnectionRefusedError(f"Khong the ket noi toi {host}:{port}")
