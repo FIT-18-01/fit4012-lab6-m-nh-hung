@@ -1,6 +1,7 @@
 import os
 import socket
 import sys
+import time
 
 os.environ["PYTHONUTF8"] = "1"
 
@@ -25,11 +26,11 @@ TIMEOUT = float(os.getenv("SOCKET_TIMEOUT", "10"))
 
 
 def get_plaintext() -> bytes:
-    """Read plaintext from INPUT_FILE, MESSAGE, or keyboard input."""
-    if INPUT_FILE:
-        return Path(INPUT_FILE).read_bytes()
+    """Read plaintext from MESSAGE, INPUT_FILE, or keyboard input."""
     if MESSAGE_ENV is not None:
         return MESSAGE_ENV.encode("utf-8")
+    if INPUT_FILE:
+        return Path(INPUT_FILE).read_bytes()
     return input("Nhập bản tin: ").encode("utf-8")
 
 
@@ -37,9 +38,17 @@ def send_packet(host: str, port: int, packet: bytes) -> None:
     """Open one TCP connection and send all bytes."""
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
         sock.settimeout(TIMEOUT)
-        sock.connect((host, port))
-        sock.sendall(packet)
 
+        for _ in range(10):
+            try:
+                sock.connect((host, port))
+                break
+            except ConnectionRefusedError:
+                time.sleep(0.2)
+        else:
+            raise ConnectionRefusedError(f"Khong the ket noi toi {host}:{port}")
+
+        sock.sendall(packet)
 
 def main() -> None:
     plaintext = get_plaintext()
