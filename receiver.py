@@ -64,18 +64,18 @@ def receive_data_packet() -> bytes:
 def main() -> None:
     lines = []
 
-    line = f"[*] Receiver dang lang nghe kênh khóa tai {HOST}:{KEY_PORT}"
+    line = f"[*] Receiver đang lắng nghe kênh khóa tại {HOST}:{KEY_PORT}"
     print(line, flush=True)
     lines.append(line)
 
     key_packet = receive_key_packet()
     key, iv = parse_key_packet(key_packet)
 
-    line = "[+] Da nhan AES key va IV."
+    line = "[+] Đã nhận AES key và IV."
     print(line, flush=True)
     lines.append(line)
 
-    line = f"[*] Receiver dang lang nghe kênh dữ liệu tai {HOST}:{DATA_PORT}"
+    line = f"[*] Receiver đang lắng nghe kênh dữ liệu tại {HOST}:{DATA_PORT}"
     print(line, flush=True)
     lines.append(line)
 
@@ -84,9 +84,9 @@ def main() -> None:
     ciphertext = data_packet[LENGTH_HEADER_SIZE:]
 
     if len(ciphertext) != length:
-        raise ValueError("Ciphertext nhan duoc khong khop length header.")
+        raise ValueError("Ciphertext nhận được không khớp length header.")
 
-    line = "[+] Da nhan ciphertext."
+    line = "[+] Đã nhận ciphertext."
     print(line, flush=True)
     lines.append(line)
 
